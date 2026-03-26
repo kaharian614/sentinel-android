@@ -1,0 +1,28 @@
+workflows:
+  android-release:
+    name: Sentinel Android Release
+    max_build_duration: 60
+    environment:
+      android_signing:
+        - sentinel_keystore
+      vars:
+        PACKAGE_NAME: "com.kaharian.sentinel"
+    scripts:
+      - name: Set up local.properties
+        script: echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
+      - name: Build release APK
+        script: |
+          ./gradlew assembleRelease \
+            -Pandroid.injected.signing.store.file=$CM_KEYSTORE_PATH \
+            -Pandroid.injected.signing.store.password=$CM_KEYSTORE_PASSWORD \
+            -Pandroid.injected.signing.key.alias=$CM_KEY_ALIAS \
+            -Pandroid.injected.signing.key.password=$CM_KEY_PASSWORD
+    artifacts:
+      - app/build/outputs/apk/release/*.apk
+    publishing:
+      email:
+        recipients:
+          - kaharian.apps@gmail.com
+        notify:
+          success: true
+          failure: true
