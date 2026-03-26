@@ -1,0 +1,9 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.kaharian.sentinel",
+    "sha256_cert_fingerprints":
+    ["3C:2F:50:68:7E:35:F8:8D:52:DB:42:9A:C3:CF:67:3D:42:F1:41:B3:73:C4:AA:D6:7A:8C:1B:81:7F:49:BC:B3"]
+  }
+}]
